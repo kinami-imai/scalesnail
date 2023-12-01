@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://dqg3m4vylb607"]
+
+[ext_resource type="PackedScene" uid="uid://dml35cdekv4i2" path="res://level.tscn" id="1_ffexn"]
+[ext_resource type="PhysicsMaterial" uid="uid://8a4wmkelbb8o" path="res://platform.tres" id="2_6xixq"]
+[ext_resource type="Texture2D" uid="uid://brtvndshajlu1" path="res://assets/titles/nail.PNG" id="2_fip1a"]
+[ext_resource type="Texture2D" uid="uid://c58jt0p6h35n3" path="res://assets/levels/lvl3-bg.png" id="3_fd4n1"]
+[ext_resource type="Texture2D" uid="uid://dqh84rgdg577t" path="res://assets/levels/lvl3-fg.png" id="4_5y1tw"]
+[ext_resource type="Texture2D" uid="uid://btr3j3neljjup" path="res://assets/levels/lvl3-water1.png" id="4_onkfi"]
+[ext_resource type="Texture2D" uid="uid://dbl7lew15f8cg" path="res://assets/levels/lvl3-water2.png" id="5_ypblj"]
+[ext_resource type="Texture2D" uid="uid://dix6rnmsqrjfm" path="res://assets/levels/lvl3-sparkle1.png" id="6_x05nt"]
+[ext_resource type="Texture2D" uid="uid://6ofrvwbfh4uc" path="res://assets/levels/lvl3-sparkle2.png" id="7_cnug3"]
+[ext_resource type="Texture2D" uid="uid://c7e5p2ply3g11" path="res://assets/levels/lvl3-sparkle3.png" id="8_be474"]
+[ext_resource type="Texture2D" uid="uid://7o33l7fhjl0l" path="res://assets/nail.png" id="9_qgi1o"]
+[ext_resource type="Script" path="res://water.gd" id="11_nrnvg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvirs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_onkfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ypblj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqvxs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_x05nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cnug3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_be474")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vef02"]
+size = Vector2(1239, 99)
+
+[node name="level" instance=ExtResource("1_ffexn")]
+textUre = ExtResource("2_fip1a")
+
+[node name="Node2D" type="Node2D" parent="." index="0"]
+position = Vector2(205, 202)
+scale = Vector2(0.501919, 0.501919)
+
+[node name="Lvl3-bg" type="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(743, 234)
+texture = ExtResource("3_fd4n1")
+
+[node name="Lvl3-water1" type="AnimatedSprite2D" parent="Node2D" index="1"]
+position = Vector2(743, 234)
+sprite_frames = SubResource("SpriteFrames_dvirs")
+autoplay = "default"
+frame_progress = 0.1219
+
+[node name="Lvl3-sparkle1" type="AnimatedSprite2D" parent="Node2D" index="2"]
+position = Vector2(743, 234)
+sprite_frames = SubResource("SpriteFrames_kqvxs")
+autoplay = "default"
+frame_progress = 0.340507
+
+[node name="Lvl3-fg" type="Sprite2D" parent="Node2D" index="3"]
+position = Vector2(743, 234)
+texture = ExtResource("4_5y1tw")
+
+[node name="start" parent="." index="1"]
+position = Vector2(30, 437)
+
+[node name="end" parent="." index="2"]
+position = Vector2(1069, 513)
+kale = ExtResource("9_qgi1o")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+physics_material_override = ExtResource("2_6xixq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(1, 476, 71, 476, 71, 649, 166, 649, 165, 485, 260, 486, 266, 650, 398, 650, 399, 518, 502, 518, 504, 650, 627, 650, 627, 530, 1008, 530, 1005, 561, 1151, 559, 1154, 678, 3, 687)
+
+[node name="water" type="Area2D" parent="." index="4"]
+position = Vector2(1069, 513)
+script = ExtResource("11_nrnvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water" index="0"]
+position = Vector2(-495.5, 127.5)
+shape = SubResource("RectangleShape2D_vef02")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="." index="5"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 143.0
+offset_top = 319.0
+offset_right = 359.0
+offset_bottom = 419.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Water is [shake]deadly[/shake]"
+
+[connection signal="body_entered" from="water" to="water" method="_on_body_entered"]
+[connection signal="body_exited" from="water" to="water" method="_on_body_exited"]

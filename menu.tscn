@@ -1,0 +1,307 @@
+[gd_scene load_steps=9 format=3 uid="uid://cd7dgf5vcsh4i"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_f110m"]
+[ext_resource type="PackedScene" uid="uid://coqflhq54jmws" path="res://tada.tscn" id="2_7ek0r"]
+[ext_resource type="PackedScene" uid="uid://oh13v0fb2plg" path="res://main.tscn" id="2_uh3l0"]
+[ext_resource type="Texture2D" uid="uid://dmux2q804yc8w" path="res://assets/eat/frame0000.png" id="3_ppj1q"]
+[ext_resource type="Texture2D" uid="uid://bk3w634cfxput" path="res://assets/titles/scale.png" id="4_xhal1"]
+[ext_resource type="Texture2D" uid="uid://brui17hp34axe" path="res://assets/titles/snail.png" id="5_8ejvx"]
+[ext_resource type="PackedScene" uid="uid://4n68jtrpafkx" path="res://levelselectbutton.tscn" id="7_epgdm"]
+[ext_resource type="AudioStream" uid="uid://baohg1kwddtly" path="res://assets/Space Jazz.mp3" id="7_sk2eb"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+size_2d_override = Vector2i(1152, 648)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Menu" type="Control" parent="SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f110m")
+main_scene = ExtResource("2_uh3l0")
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.666667, 0.835294, 0.647059, 1)
+
+[node name="tada" parent="SubViewport/Menu" instance=ExtResource("2_7ek0r")]
+position = Vector2(65, 468)
+scale = Vector2(3.55544, 3.55544)
+
+[node name="title" type="Control" parent="SubViewport/Menu"]
+anchors_preset = 0
+offset_left = 232.0
+offset_top = 86.0
+offset_right = 272.0
+offset_bottom = 126.0
+scale = Vector2(0.422385, 0.422385)
+
+[node name="Scale" type="Sprite2D" parent="SubViewport/Menu/title"]
+position = Vector2(725, 783)
+texture = ExtResource("4_xhal1")
+
+[node name="Snail" type="Sprite2D" parent="SubViewport/Menu/title"]
+position = Vector2(725, 783)
+texture = ExtResource("5_8ejvx")
+
+[node name="Frame0000" type="Sprite2D" parent="SubViewport/Menu"]
+position = Vector2(15, 350)
+scale = Vector2(0.589355, 0.589355)
+texture = ExtResource("3_ppj1q")
+
+[node name="menus" type="Control" parent="SubViewport/Menu"]
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 236.0
+offset_right = 1084.0
+offset_bottom = 622.0
+
+[node name="main" type="VBoxContainer" parent="SubViewport/Menu/menus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start" type="Button" parent="SubViewport/Menu/menus/main"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="level_select" type="Button" parent="SubViewport/Menu/menus/main"]
+layout_mode = 2
+text = "Level Select"
+
+[node name="options" type="Button" parent="SubViewport/Menu/menus/main"]
+layout_mode = 2
+text = "Options"
+
+[node name="credits" type="Button" parent="SubViewport/Menu/menus/main"]
+layout_mode = 2
+text = "Credits"
+
+[node name="quit" type="Button" parent="SubViewport/Menu/menus/main"]
+layout_mode = 2
+text = "Quit"
+
+[node name="credits" type="Control" parent="SubViewport/Menu/menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="credits" type="RichTextLabel" parent="SubViewport/Menu/menus/credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game by Kinami Imai (kinami.dev)
+
+Made for the Game Off 2023 Jam
+
+3rd party assets
+=============
+
+Music: \"Space Jazz\" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+Sounds:
+
+Ding: https://freesound.org/people/raulgr2023/sounds/709573/ License: CC0
+
+Jump: https://freesound.org/people/8bitmyketison/sounds/699927/ License: CC0
+
+Movement: https://freesound.org/people/filippys/sounds/656906/ License CC0"
+
+[node name="back" type="Button" parent="SubViewport/Menu/menus/credits"]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 310.0
+offset_right = 506.0
+offset_bottom = 341.0
+text = "Back"
+
+[node name="options" type="VBoxContainer" parent="SubViewport/Menu/menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fullscreen" type="CheckButton" parent="SubViewport/Menu/menus/options"]
+layout_mode = 2
+text = "Skip intro"
+
+[node name="sound" type="HBoxContainer" parent="SubViewport/Menu/menus/options"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/Menu/menus/options/sound"]
+layout_mode = 2
+text = "Music Volume"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSlider" type="HSlider" parent="SubViewport/Menu/menus/options/sound"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="music" type="HBoxContainer" parent="SubViewport/Menu/menus/options"]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="SubViewport/Menu/menus/options/music"]
+layout_mode = 2
+text = "Sound volume"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSlider" type="HSlider" parent="SubViewport/Menu/menus/options/music"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="back" type="Button" parent="SubViewport/Menu/menus/options"]
+layout_mode = 2
+text = "Back"
+
+[node name="levelselect" type="GridContainer" parent="SubViewport/Menu/menus"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 4
+
+[node name="Button" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+
+[node name="Button2" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 2
+
+
+
+"
+
+[node name="Button3" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 3
+
+
+
+"
+
+[node name="Button4" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 4
+
+
+
+"
+
+[node name="Button5" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 5
+
+
+
+"
+
+[node name="Button6" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 6
+
+
+
+"
+
+[node name="Button7" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 7
+
+
+
+"
+
+[node name="Button8" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 8
+
+
+
+"
+
+[node name="Button9" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 9
+
+
+
+"
+
+[node name="Button10" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 10
+
+
+
+"
+
+[node name="Button11" parent="SubViewport/Menu/menus/levelselect" instance=ExtResource("7_epgdm")]
+layout_mode = 2
+text = "Level 11
+
+
+
+"
+
+[node name="back" type="Button" parent="SubViewport/Menu/menus/levelselect"]
+layout_mode = 2
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/Menu"]
+stream = ExtResource("7_sk2eb")
+autoplay = true
+
+[connection signal="pressed" from="SubViewport/Menu/menus/main/start" to="SubViewport/Menu" method="_on_start_pressed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/main/level_select" to="SubViewport/Menu" method="_on_level_select_pressed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/main/options" to="SubViewport/Menu" method="_on_options_pressed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/main/credits" to="SubViewport/Menu" method="_on_credits_pressed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/main/quit" to="SubViewport/Menu" method="_on_quit_pressed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/credits/back" to="SubViewport/Menu" method="_on_back_pressed"]
+[connection signal="toggled" from="SubViewport/Menu/menus/options/fullscreen" to="SubViewport/Menu" method="_on_fullscreen_toggled"]
+[connection signal="value_changed" from="SubViewport/Menu/menus/options/sound/HSlider" to="SubViewport/Menu" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="SubViewport/Menu/menus/options/music/HSlider" to="SubViewport/Menu" method="_on_music_slider_value_changed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/options/back" to="SubViewport/Menu" method="_on_back_pressed"]
+[connection signal="pressed" from="SubViewport/Menu/menus/levelselect/back" to="SubViewport/Menu" method="_on_back_pressed"]

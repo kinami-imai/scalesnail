@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0ec12g6fpfhm"]
+
+[ext_resource type="PackedScene" uid="uid://dml35cdekv4i2" path="res://level.tscn" id="1_be2tg"]
+[ext_resource type="Texture2D" uid="uid://cpm8qgkan7uo8" path="res://assets/levels/lvl11-bg.png" id="2_cn8sq"]
+[ext_resource type="Script" path="res://water.gd" id="2_fcnkp"]
+[ext_resource type="Texture2D" uid="uid://bh3bb0h1eyyod" path="res://assets/titles/sail.PNG" id="2_k24bk"]
+[ext_resource type="Texture2D" uid="uid://bjjmx1m24lp6g" path="res://assets/sail.png" id="2_ksfli"]
+[ext_resource type="PhysicsMaterial" uid="uid://8a4wmkelbb8o" path="res://platform.tres" id="2_quejx"]
+[ext_resource type="Texture2D" uid="uid://7unptmvq6xmr" path="res://assets/levels/lvl10-fg.png" id="3_tljmi"]
+[ext_resource type="Texture2D" uid="uid://b8wxg4eigrp2o" path="res://assets/levels/lvl11-water1.png" id="7_71r5l"]
+[ext_resource type="Texture2D" uid="uid://bnud3b3o0g6mq" path="res://assets/levels/lvl11-water2.png" id="8_m3xm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4xms"]
+size = Vector2(116, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkpgw"]
+size = Vector2(1175, 75)
+
+[sub_resource type="Animation" id="Animation_gfy0b"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_rb1g3"]
+resource_name = "waves"
+length = 12.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vqxya"]
+_data = {
+"RESET": SubResource("Animation_gfy0b"),
+"waves": SubResource("Animation_rb1g3")
+}
+
+[node name="level" instance=ExtResource("1_be2tg")]
+textUre = ExtResource("2_k24bk")
+
+[node name="Node2D" type="Node2D" parent="." index="0"]
+position = Vector2(209, 127)
+scale = Vector2(0.49618, 0.49618)
+
+[node name="Lvl11-bg" type="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(740, 399)
+texture = ExtResource("2_cn8sq")
+
+[node name="Lvl10-fg" type="Sprite2D" parent="Node2D" index="1"]
+position = Vector2(740, 399)
+texture = ExtResource("3_tljmi")
+
+[node name="start" parent="." index="1"]
+position = Vector2(168, 478)
+
+[node name="end" parent="." index="2"]
+position = Vector2(855, 543)
+kale = ExtResource("2_ksfli")
+kale_visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+physics_material_override = ExtResource("2_quejx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(101, 130, 105, 583, 360, 583, 355, 677, -20, 677, -23, 120)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="4"]
+position = Vector2(807, 595)
+physics_material_override = ExtResource("2_quejx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(48, 27)
+shape = SubResource("RectangleShape2D_y4xms")
+
+[node name="water" type="Area2D" parent="." index="5"]
+script = ExtResource("2_fcnkp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water" index="0"]
+position = Vector2(580.5, 628.5)
+shape = SubResource("RectangleShape2D_kkpgw")
+
+[node name="Node2D2" type="Node2D" parent="." index="6"]
+position = Vector2(1, 517)
+scale = Vector2(1.0078, 0.368348)
+
+[node name="Lvl11-water1" type="Sprite2D" parent="Node2D2" index="0"]
+position = Vector2(601, 326)
+scale = Vector2(0.526258, 0.526258)
+texture = ExtResource("7_71r5l")
+
+[node name="Lvl11-water2" type="Sprite2D" parent="Node2D2" index="1"]
+position = Vector2(601, 326)
+scale = Vector2(0.512917, 0.512917)
+texture = ExtResource("8_m3xm8")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Node2D2" index="2"]
+autoplay = "waves"
+libraries = {
+"": SubResource("AnimationLibrary_vqxya")
+}
+
+[connection signal="body_entered" from="water" to="water" method="_on_body_entered"]
+[connection signal="body_exited" from="water" to="water" method="_on_body_exited"]

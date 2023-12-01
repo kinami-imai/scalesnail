@@ -1,0 +1,143 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgochvpiispvf"]
+
+[ext_resource type="Texture2D" uid="uid://oeb1mxeyut28" path="res://assets/spacescalesnail.png" id="1_47ynl"]
+[ext_resource type="Script" path="res://win_screen.gd" id="1_y5m1q"]
+[ext_resource type="Texture2D" uid="uid://rst2xawqcsa8" path="res://assets/spacesnailtitle.png" id="2_thetu"]
+
+[sub_resource type="Animation" id="Animation_yptdk"]
+resource_name = "scale"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spacesnailtitle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(10.2, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.599902, 0.599902)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spacescalesnail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-525.898, 3025.6), Vector2(612, 279)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spacescalesnail:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5.72789, 5.72789), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a8hh0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spacesnailtitle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.599902, 0.599902)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spacescalesnail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(612, 279)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spacescalesnail:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mycjx"]
+_data = {
+"RESET": SubResource("Animation_a8hh0"),
+"scale": SubResource("Animation_yptdk")
+}
+
+[node name="win_screen" type="Node2D"]
+position = Vector2(214, 161)
+scale = Vector2(0.593271, 0.593271)
+script = ExtResource("1_y5m1q")
+
+[node name="Spacescalesnail" type="Sprite2D" parent="."]
+position = Vector2(612, 279)
+texture = ExtResource("1_47ynl")
+
+[node name="Spacesnailtitle" type="Sprite2D" parent="."]
+position = Vector2(414.65, 325.315)
+scale = Vector2(0.599902, 0.599902)
+texture = ExtResource("2_thetu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mycjx")
+}
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1309.69
+offset_top = 755.135
+offset_right = 1580.69
+offset_bottom = 818.135
+theme_override_font_sizes/font_size = 40
+text = "Back to menu"
+
+[connection signal="pressed" from="Button" to="." method="back_to_menu"]

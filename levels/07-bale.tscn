@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq0kb4ip68vis"]
+
+[ext_resource type="PackedScene" uid="uid://dml35cdekv4i2" path="res://level.tscn" id="1_oon0u"]
+[ext_resource type="Texture2D" uid="uid://bwbsbwooar6ut" path="res://assets/titles/bale.PNG" id="2_5s40i"]
+[ext_resource type="Texture2D" uid="uid://dedbbtoq2uebo" path="res://assets/levels/lvl7-bg.png" id="2_52vya"]
+[ext_resource type="Texture2D" uid="uid://do10uwfsibhh0" path="res://assets/bale.png" id="2_pgdn6"]
+[ext_resource type="Texture2D" uid="uid://qvgbukulq62u" path="res://assets/levels/lvl7-fg.png" id="3_cpika"]
+[ext_resource type="PhysicsMaterial" uid="uid://8a4wmkelbb8o" path="res://platform.tres" id="5_e1i18"]
+
+[node name="level" instance=ExtResource("1_oon0u")]
+textUre = ExtResource("2_5s40i")
+
+[node name="Node2D" type="Node2D" parent="." index="0"]
+position = Vector2(394, 202)
+scale = Vector2(0.495829, 0.495829)
+
+[node name="Lvl7-bg" type="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(365, 246)
+texture = ExtResource("2_52vya")
+
+[node name="Lvl7-fg" type="Sprite2D" parent="Node2D" index="1"]
+position = Vector2(365, 246)
+texture = ExtResource("3_cpika")
+
+[node name="start" parent="." index="1"]
+position = Vector2(44, 43)
+
+[node name="end" parent="." index="2"]
+position = Vector2(1057, 570)
+kale = ExtResource("2_pgdn6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+physics_material_override = ExtResource("5_e1i18")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
+polygon = PackedVector2Array(-2, 362, -3, 79, 66, 84, 139, 160, 251, 274, 328, 369, 345, 457, 404, 515, 476, 529, 540, 612, 610, 648, 786, 648, 1142, 639, 1149, 457, 834, 466, 822, 611, 792, 609, 803, 460, 806, 437, 727, 435, 807, 341, 1158, 330, 1154, 420, 1174, 639, 1167, 664, 636, 657, -21, 661)

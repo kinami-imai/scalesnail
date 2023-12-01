@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://hoc7y6ckombi"]
+
+[ext_resource type="Script" path="res://end.gd" id="1_4v1kn"]
+[ext_resource type="Texture2D" uid="uid://bu6a7otk6507m" path="res://spokes.svg" id="2_oclrs"]
+[ext_resource type="Texture2D" uid="uid://bn1ri5b4oltnp" path="res://assets/kale.png" id="3_6h7b0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jl708"]
+radius = 34.2345
+
+[sub_resource type="Animation" id="Animation_yabvj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Spokes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Spokes:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.873375, 0.873375)]
+}
+
+[sub_resource type="Animation" id="Animation_hw3e6"]
+resource_name = "spin"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Spokes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Spokes:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.873375, 0.873375), Vector2(0.8, 0.8), Vector2(0.873, 0.873), Vector2(0.8, 0.8), Vector2(0.873, 0.873)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gscle"]
+_data = {
+"RESET": SubResource("Animation_yabvj"),
+"spin": SubResource("Animation_hw3e6")
+}
+
+[node name="end" type="Area2D"]
+position = Vector2(1055, 478)
+script = ExtResource("1_4v1kn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jl708")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.291027, 0.291027)
+
+[node name="Spokes" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.372549)
+position = Vector2(-2, 2)
+scale = Vector2(0.873375, 0.873375)
+texture = ExtResource("2_oclrs")
+
+[node name="Kale" type="Sprite2D" parent="Node2D"]
+position = Vector2(6, 17)
+scale = Vector2(0.259078, 0.259078)
+texture = ExtResource("3_6h7b0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_gscle")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

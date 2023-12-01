@@ -1,0 +1,503 @@
+[gd_scene load_steps=16 format=3 uid="uid://bwh5v0na0a8ao"]
+
+[ext_resource type="PackedScene" uid="uid://dml35cdekv4i2" path="res://level.tscn" id="1_6pcfb"]
+[ext_resource type="PhysicsMaterial" uid="uid://8a4wmkelbb8o" path="res://platform.tres" id="2_ycn3q"]
+[ext_resource type="Texture2D" uid="uid://c3c1175grs0qn" path="res://assets/levels/lvl1-bg.png" id="3_y2fgi"]
+[ext_resource type="Texture2D" uid="uid://bn1ri5b4oltnp" path="res://assets/kale.png" id="4_pie6e"]
+[ext_resource type="Texture2D" uid="uid://dy3su11k7busw" path="res://assets/levels/lvl1-fg.png" id="4_qkkq0"]
+[ext_resource type="Script" path="res://levels/dialog.gd" id="6_03qoq"]
+[ext_resource type="Texture2D" uid="uid://cxk7b176qrpmo" path="res://assets/ha.png" id="6_nat8q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uakx8"]
+size = Vector2(113, 132)
+
+[sub_resource type="Gradient" id="Gradient_t0pki"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aakb4"]
+gradient = SubResource("Gradient_t0pki")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_itnxe"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 50, 50)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_aakb4")
+
+[sub_resource type="Animation" id="Animation_y0x2p"]
+resource_name = "dialog"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 9.7, 12.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("textbox:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.7, 5.5, 5.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("textbox2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.5, 3.7, 8.5, 8.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("textbox3:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.2, 7.4, 9.7, 9.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("textbox4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 14.3, 14.5, 19.3, 19.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("textbox/RichTextLabel:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.7, 3.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("textbox2/RichTextLabel:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.7, 6.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("textbox3/RichTextLabel:visible_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(6.7, 9.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("textbox4/RichTextLabel:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(12.4, 18.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_10ins"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("textbox:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("textbox2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("textbox3:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("textbox4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("textbox/RichTextLabel:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("textbox2/RichTextLabel:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("textbox3/RichTextLabel:visible_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("textbox4/RichTextLabel:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RichTextLabel2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RichTextLabel3:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ikx0n"]
+resource_name = "instructions"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.7, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xp1xm"]
+_data = {
+"RESET": SubResource("Animation_10ins"),
+"dialog": SubResource("Animation_y0x2p"),
+"instructions": SubResource("Animation_ikx0n")
+}
+
+[node name="level" instance=ExtResource("1_6pcfb")]
+
+[node name="Node2D" type="Node2D" parent="." index="0"]
+position = Vector2(166, 143)
+scale = Vector2(0.506838, 0.506838)
+
+[node name="Lvl1-bg" type="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(798, 336)
+texture = ExtResource("3_y2fgi")
+
+[node name="Lvl1-fg" type="Sprite2D" parent="Node2D" index="1"]
+position = Vector2(798, 336)
+texture = ExtResource("4_qkkq0")
+
+[node name="end" parent="." index="2"]
+kale = ExtResource("4_pie6e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+position = Vector2(323, 608)
+physics_material_override = ExtResource("2_ycn3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
+position = Vector2(46.5, 56)
+shape = SubResource("RectangleShape2D_uakx8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="4"]
+position = Vector2(1054, 540)
+physics_material_override = ExtResource("2_ycn3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="0"]
+position = Vector2(46.5, 56)
+shape = SubResource("RectangleShape2D_uakx8")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="." index="5"]
+position = Vector2(950, 591)
+physics_material_override = ExtResource("2_ycn3q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5" index="0"]
+position = Vector2(46.5, 56)
+shape = SubResource("RectangleShape2D_uakx8")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="." index="6"]
+position = Vector2(508, 516)
+scale = Vector2(1.01376, 0.982124)
+physics_material_override = ExtResource("2_ycn3q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6" index="0"]
+position = Vector2(-136, 111)
+polygon = PackedVector2Array(170, 29, 366, -53, 588, -79, 596, 107, 176, 133)
+
+[node name="dialog" type="Node2D" parent="." index="7"]
+script = ExtResource("6_03qoq")
+
+[node name="textbox" type="Panel" parent="dialog" index="0"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 261.0
+offset_bottom = 166.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialog/textbox" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+
+
+         Hey look at that snail!"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="textbox2" type="Panel" parent="dialog" index="1"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 443.0
+offset_top = 8.0
+offset_right = 704.0
+offset_bottom = 174.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialog/textbox2" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+
+  
+   I can barely see it, it's so [wave]small[/wave]"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="textbox3" type="Panel" parent="dialog" index="2"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 261.0
+offset_bottom = 166.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialog/textbox3" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "
+
+
+                  How [wave]pathetic[/wave]!"
+
+[node name="textbox4" type="Panel" parent="dialog" index="3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 889.0
+offset_top = 245.0
+offset_right = 1150.0
+offset_bottom = 411.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialog/textbox4" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "                       
+                         Hey Snail!
+                     Come [wave]eat me![/wave]
+        
+         I'll teach you how to [wave]scale![/wave] "
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="dialog" index="4"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 453.0
+offset_right = 240.0
+offset_bottom = 553.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Use the WASD or arrow keys to move around.
+Careful! You're slippery!"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="dialog" index="5"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 288.0
+offset_top = 467.0
+offset_right = 504.0
+offset_bottom = 567.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Press Space to jump!
+How can a snail even jump?"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="dialog" index="6"]
+position = Vector2(325, 96)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_itnxe")
+texture = ExtResource("6_nat8q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dialog" index="7"]
+autoplay = "dialog"
+libraries = {
+"": SubResource("AnimationLibrary_xp1xm")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialog" index="8"]
+offset_left = 931.0
+offset_top = 1.0
+offset_right = 1156.0
+offset_bottom = 81.0
+text = "Press Escape at any time
+to return to the menu"
+
+[connection signal="animation_finished" from="dialog/AnimationPlayer" to="dialog" method="_on_animation_player_animation_finished"]
